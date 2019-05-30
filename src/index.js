@@ -1,15 +1,12 @@
 import { calendar } from "./common/calendar"
-import { hederController } from "./app/Header/controler"
-import { buttonView } from "./app/Button/view"
 
-const initButton = buttonView().initButton
-const setHeaderColorRed = hederController().setHeaderColorRed
-
-const calendarWeeks = calendar.monthDays(2019, 5)
-
-const render = () => {
-	console.log(calendarWeeks)
-	initButton(setHeaderColorRed)
+export const getCurrMonthArr = (year, month) => {
+  return calendar.monthDays(year, month)
 }
 
-render()
+export const getLastDay = (year, month) =>
+  calendar
+    .monthDays(year, month)
+    .reduce((acc, curr) => acc.concat(curr), [])
+    .filter(day => day > 0)
+    .reverse()[0]
